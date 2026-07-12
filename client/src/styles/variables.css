@@ -1,0 +1,167 @@
+/* ============================================================
+   DarshanEase Design System — CSS Custom Properties
+   Premium Spiritual Color Palette & Typography
+   ============================================================ */
+
+:root {
+  /* ── Core Colors ── */
+  --white: #FFFFFF;
+  --ivory: #FFFFFF;
+  --cream: #FAFAFA;
+  --beige: #F4F4F5;
+  --light-sand: #E4E4E7;
+  --soft-gold: #000000;
+  --saffron: #000000;
+  --saffron-light: #18181B;
+  --saffron-dark: #000000;
+  --saffron-rgb: 0, 0, 0;
+  --saffron-light-rgb: 24, 24, 27;
+  --temple-red: #000000;
+  --temple-red-light: #18181B;
+  --deep-maroon: #000000;
+  --deep-maroon-rgb: 0, 0, 0;
+  --dark-brown: #000000;
+  --dark-brown-rgb: 0, 0, 0;
+  --charcoal: #18181B;
+  --slate-gray: #71717A;
+
+  /* ── Extended Palette ── */
+  --success: #000000;
+  --success-light: #F4F4F5;
+  --warning: #18181B;
+  --warning-light: #F4F4F5;
+  --info: #000000;
+  --info-light: #F4F4F5;
+  --danger: #000000;
+  --danger-light: #F4F4F5;
+
+  /* ── Semantic Colors ── */
+  --bg-primary: var(--ivory);
+  --bg-secondary: var(--beige);
+  --bg-card: var(--white);
+  --bg-input: var(--white);
+  --bg-hover: #F4F4F5;
+  --text-primary: var(--dark-brown);
+  --text-secondary: var(--charcoal);
+  --text-muted: var(--slate-gray);
+  --text-accent: var(--deep-maroon);
+  --border-color: #E5E5E5;
+  --border-light: #F4F4F5;
+  --accent-primary: var(--saffron);
+  --accent-secondary: var(--temple-red);
+  --accent-tertiary: var(--soft-gold);
+
+  /* ── Typography ── */
+  --font-heading: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Font Sizes */
+  --fs-xs: 0.75rem;     /* 12px */
+  --fs-sm: 0.8125rem;   /* 13px */
+  --fs-base: 0.9375rem; /* 15px */
+  --fs-md: 1rem;        /* 16px */
+  --fs-lg: 1.125rem;    /* 18px */
+  --fs-xl: 1.25rem;     /* 20px */
+  --fs-2xl: 1.5rem;     /* 24px */
+  --fs-3xl: 1.875rem;   /* 30px */
+  --fs-4xl: 2.25rem;    /* 36px */
+  --fs-5xl: 3rem;       /* 48px */
+  --fs-6xl: 3.75rem;    /* 60px */
+
+  /* Font Weights */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ── Spacing ── */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-7: 2.5rem;    /* 40px */
+  --space-8: 3rem;      /* 48px */
+  --space-9: 4rem;      /* 64px */
+  --space-10: 5rem;     /* 80px */
+
+  /* ── Border Radius ── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-xs: 0 1px 2px rgba(62, 39, 35, 0.04);
+  --shadow-sm: 0 2px 4px rgba(62, 39, 35, 0.06);
+  --shadow-md: 0 4px 12px rgba(62, 39, 35, 0.08);
+  --shadow-lg: 0 8px 24px rgba(62, 39, 35, 0.10);
+  --shadow-xl: 0 12px 40px rgba(62, 39, 35, 0.12);
+  --shadow-2xl: 0 20px 60px rgba(62, 39, 35, 0.15);
+  --shadow-card: 0 2px 8px rgba(62, 39, 35, 0.06), 0 0 1px rgba(62, 39, 35, 0.08);
+  --shadow-card-hover: 0 8px 24px rgba(62, 39, 35, 0.12), 0 0 1px rgba(62, 39, 35, 0.10);
+  --shadow-saffron: 0 4px 16px rgba(var(--saffron-rgb), 0.25);
+  --shadow-maroon: 0 4px 16px rgba(var(--deep-maroon-rgb), 0.25);
+
+  /* ── Transitions ── */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-Index Scale ── */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+  --z-tooltip: 700;
+
+  /* ── Layout ── */
+  --navbar-height: 72px;
+  --sidebar-width: 260px;
+  --container-max: 1280px;
+  --container-narrow: 960px;
+}
+
+/* ── Dark Mode Variables ── */
+[data-theme='dark'] {
+  --bg-primary: #000000;
+  --bg-secondary: #121212;
+  --bg-card: #000000;
+  --bg-input: #121212;
+  --bg-hover: #1E1E1E;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E4E4E7;
+  --text-muted: #A1A1AA;
+  --text-accent: #FFFFFF;
+  --border-color: #27272A;
+  --border-light: #18181B;
+  
+  /* Accent colors are white in dark theme */
+  --saffron: #FFFFFF;
+  --saffron-light: #E4E4E7;
+  --saffron-dark: #FFFFFF;
+  --temple-red: #FFFFFF;
+  --deep-maroon: #FFFFFF;
+  --soft-gold: #FFFFFF;
+  --dark-brown: #FFFFFF;
+
+  --saffron-rgb: 255, 255, 255;
+  --deep-maroon-rgb: 255, 255, 255;
+  --dark-brown-rgb: 255, 255, 255;
+
+  --shadow-xs: 0 1px 2px rgba(255, 255, 255, 0.05);
+  --shadow-sm: 0 2px 4px rgba(255, 255, 255, 0.08);
+  --shadow-md: 0 4px 12px rgba(255, 255, 255, 0.1);
+  --shadow-lg: 0 8px 24px rgba(255, 255, 255, 0.12);
+  --shadow-xl: 0 12px 40px rgba(255, 255, 255, 0.15);
+  --shadow-card: 0 2px 8px rgba(255, 255, 255, 0.08);
+  --shadow-card-hover: 0 8px 24px rgba(255, 255, 255, 0.12);
+}

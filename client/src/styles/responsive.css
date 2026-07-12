@@ -1,0 +1,145 @@
+/* ============================================================
+   DarshanEase — Responsive Styles
+   Mobile, Tablet, Desktop breakpoints
+   ============================================================ */
+
+/* ── Small devices (< 576px) ── */
+@media (max-width: 575.98px) {
+  h1 { font-size: var(--fs-3xl); }
+  h2 { font-size: var(--fs-2xl); }
+  h3 { font-size: var(--fs-xl); }
+  h4 { font-size: var(--fs-lg); }
+
+  .section { padding: var(--space-7) 0; }
+  .container-custom { padding: 0 var(--space-4); }
+
+  .hero-section { min-height: 70vh; }
+  .hero-content h1 { font-size: var(--fs-3xl); }
+  .hero-stats { flex-direction: column; gap: var(--space-4); }
+
+  .temple-card-img-wrapper { height: 180px; }
+
+  .booking-steps { flex-direction: column; gap: var(--space-2); }
+  .booking-step-connector { display: none; }
+
+  .dashboard-sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+  }
+
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+    padding: var(--space-4);
+  }
+
+  .stats-card { padding: var(--space-4); }
+  .stats-card-value { font-size: var(--fs-2xl); }
+
+  .ticket-card { max-width: 100%; }
+  .ticket-card::before,
+  .ticket-card::after { display: none; }
+
+  .toast-spiritual { min-width: auto; max-width: calc(100vw - 32px); }
+
+  .page-header { padding: var(--space-7) 0 var(--space-6); }
+  .page-header h1 { font-size: var(--fs-2xl); }
+
+  .filter-panel { padding: var(--space-4); }
+
+  .navbar-spiritual { height: 60px; }
+  .main-content { padding-top: 60px; }
+  :root { --navbar-height: 60px; }
+}
+
+/* ── Medium devices (576px - 767px) ── */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .hero-section { min-height: 75vh; }
+  .hero-stats { gap: var(--space-5); }
+
+  .dashboard-sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+  }
+
+  .dashboard-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+    padding: var(--space-4);
+  }
+
+  .booking-steps {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+}
+
+/* ── Tablet (768px - 991px) ── */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .dashboard-sidebar {
+    width: 220px;
+  }
+
+  .dashboard-main {
+    margin-left: 220px;
+    padding: var(--space-5);
+  }
+
+  .sidebar-nav-item {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--fs-sm);
+  }
+
+  .hero-section { min-height: 80vh; }
+}
+
+/* ── Desktop (992px+) ── */
+@media (min-width: 992px) {
+  .dashboard-sidebar { width: var(--sidebar-width); }
+  .dashboard-main { margin-left: var(--sidebar-width); }
+}
+
+/* ── Large desktop (1400px+) ── */
+@media (min-width: 1400px) {
+  .container-custom { max-width: 1320px; }
+}
+
+/* ── Print Styles ── */
+@media print {
+  .navbar-spiritual,
+  .footer-spiritual,
+  .dashboard-sidebar,
+  .toast-container,
+  .btn-primary,
+  .btn-maroon { display: none !important; }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .ticket-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .main-content { padding-top: 0; }
+  .dashboard-main { margin-left: 0; }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
