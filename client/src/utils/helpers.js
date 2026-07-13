@@ -89,6 +89,13 @@ export const getStatusBadge = (status) => {
 export const getImageUrl = (path) => {
   if (!path) return '';
   if (path.startsWith('http')) return path;
+  
+  const apiUrl = import.meta.env.VITE_API_URL || '';
+  if (apiUrl.startsWith('http')) {
+    const baseUrl = apiUrl.replace(/\/api$/, '');
+    return `${baseUrl}/uploads/${path}`;
+  }
+  
   return `/uploads/${path}`;
 };
 
