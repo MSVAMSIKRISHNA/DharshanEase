@@ -282,11 +282,6 @@ The app will be available at `http://localhost:5173`
 
 ---
 
-## 📸 Screenshots
-
-> _Coming soon — screenshots of the Landing page, Temple listing, Booking flow, and Admin dashboard_
-
----
 
 ## 🤝 Contributing
 
