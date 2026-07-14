@@ -7,6 +7,12 @@
 </p>
 
 <p align="center">
+  <a href="https://dharshan-ease.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/🌐%20Live%20Demo-dharshan--ease.vercel.app-4F46E5?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+  </a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react&logoColor=white" />
   <img src="https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js&logoColor=white" />
   <img src="https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
