@@ -5,7 +5,7 @@ import { templeAPI } from '../../services/api';
 import Loader from '../../components/common/Loader';
 import Pagination from '../../components/common/Pagination';
 import EmptyState from '../../components/common/EmptyState';
-import { getImageUrl } from '../../utils/helpers';
+import { getImageUrl, getTempleFallbackImage } from '../../utils/helpers';
 
 const TempleListingPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -274,7 +274,15 @@ const TempleListingPage = () => {
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                       }}>
                         {temple.heroBanner ? (
-                          <img src={getImageUrl(temple.heroBanner)} alt={temple.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img 
+                            src={getImageUrl(temple.heroBanner)} 
+                            alt={temple.name} 
+                            onError={(e) => {
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = getTempleFallbackImage(temple.heroBanner || temple.name);
+                            }}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                          />
                         ) : (
                           <span style={{ fontSize: 64, opacity: 0.4 }}>🛕</span>
                         )}

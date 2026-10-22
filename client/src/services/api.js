@@ -1,12 +1,18 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || '/api';
+let API_URL = import.meta.env.VITE_API_URL || '/api';
+
+// On HTTPS pages (e.g. Vercel deployment), prevent mixed content blocking if API_URL is HTTP localhost
+if (typeof window !== 'undefined' && window.location.protocol === 'https:' && API_URL.startsWith('http://')) {
+  API_URL = '/api';
+}
 
 const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 10000,
   withCredentials: true,
 });
 

@@ -28,7 +28,7 @@ const LoginPage = () => {
       success('Welcome back! 🙏');
       navigate(from, { replace: true });
     } catch (err) {
-      showError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      showError(err.message || err.response?.data?.message || 'Login failed. Please check your credentials.');
     } finally {
       setLoading(false);
     }

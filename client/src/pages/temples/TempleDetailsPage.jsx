@@ -4,8 +4,7 @@ import { MapPin, Clock, Star, Users, Calendar, ChevronRight, Heart, Share2, Tick
 import { templeAPI, wishlistAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
-import Loader from '../../components/common/Loader';
-import { formatTime, getImageUrl } from '../../utils/helpers';
+import { formatTime, getImageUrl, getTempleFallbackImage } from '../../utils/helpers';
 
 const TempleDetailsPage = () => {
   const { id } = useParams();
@@ -429,7 +428,15 @@ const TempleDetailsPage = () => {
                     {temple.gallery.map((img, i) => (
                       <div className="col-md-4" key={i}>
                         <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: 200 }}>
-                          <img src={getImageUrl(img)} alt={`Gallery ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          <img 
+                            src={getImageUrl(img)} 
+                            alt={`Gallery ${i + 1}`} 
+                            onError={(e) => {
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = getTempleFallbackImage(img || temple.name);
+                            }}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                          />
                         </div>
                       </div>
                     ))}

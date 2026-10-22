@@ -2,7 +2,16 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, MapPin, Calendar, Users, Star, ArrowRight, Shield, Clock, CreditCard, Smartphone } from 'lucide-react';
 import { templeAPI, eventAPI } from '../services/api';
-import { getImageUrl } from '../utils/helpers';
+import { getImageUrl, getTempleFallbackImage } from '../utils/helpers';
+
+const defaultLandingTemples = [
+  { _id: 'temp_tirupati_001', name: 'Sri Tirumala Tirupati Devasthanam', heroBanner: 'tirumala.jpg', address: { district: 'Tirupati', state: 'Andhra Pradesh' }, darshanTypes: [{ price: 300 }], averageRating: 4.8 },
+  { _id: 'temp_varanasi_002', name: 'Varanasi Kashi Vishwanath Temple', heroBanner: 'kashi.jpg', address: { district: 'Varanasi', state: 'Uttar Pradesh' }, darshanTypes: [{ price: 0 }], averageRating: 4.6 },
+  { _id: 'temp_madurai_003', name: 'Meenakshi Amman Temple', heroBanner: 'meenakshi_temple.jpg', address: { district: 'Madurai', state: 'Tamil Nadu' }, darshanTypes: [{ price: 0 }], averageRating: 4.7 },
+  { _id: 'temp_puri_004', name: 'Jagannath Temple Puri', heroBanner: 'jaganath.jpg', address: { district: 'Puri', state: 'Odisha' }, darshanTypes: [{ price: 0 }], averageRating: 4.5 },
+  { _id: 'temp_amritsar_005', name: 'Golden Temple (Harmandir Sahib)', heroBanner: 'golden_temple.jpg', address: { district: 'Amritsar', state: 'Punjab' }, darshanTypes: [{ price: 0 }], averageRating: 4.9 },
+  { _id: 'temp_somnath_006', name: 'Somnath Temple', heroBanner: 'somnath.jpg', address: { district: 'Gir Somnath', state: 'Gujarat' }, darshanTypes: [{ price: 0 }], averageRating: 4.4 },
+];
 
 const LandingPage = () => {
   const [temples, setTemples] = useState([]);
@@ -16,9 +25,12 @@ const LandingPage = () => {
           templeAPI.getPopular().catch(() => ({ data: { data: [] } })),
           eventAPI.getAll({ upcoming: 'true' }).catch(() => ({ data: { data: [] } })),
         ]);
-        setTemples(templesRes.data.data || []);
-        setEvents(eventsRes.data.data || []);
-      } catch { /* silently handle if API not running */ }
+        const apiTemples = templesRes.data?.data || [];
+        setTemples(apiTemples.length > 0 ? apiTemples : defaultLandingTemples);
+        setEvents(eventsRes.data?.data || []);
+      } catch {
+        setTemples(defaultLandingTemples);
+      }
     };
     fetchData();
   }, []);
@@ -201,7 +213,15 @@ const LandingPage = () => {
                       justifyContent: 'center',
                     }}>
                       {temple.heroBanner ? (
-                        <img src={getImageUrl(temple.heroBanner)} alt={temple.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img 
+                          src={getImageUrl(temple.heroBanner)} 
+                          alt={temple.name} 
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = getTempleFallbackImage(temple.heroBanner || temple.name);
+                          }}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                        />
                       ) : (
                         <span style={{ fontSize: 64, opacity: 0.4 }}>🛕</span>
                       )}

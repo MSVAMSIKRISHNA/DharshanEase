@@ -28,7 +28,7 @@ const RegisterPage = () => {
       success('Account created successfully! 🙏');
       navigate('/');
     } catch (err) {
-      showError(err.response?.data?.message || 'Registration failed');
+      showError(err.message || err.response?.data?.message || 'Registration failed');
     } finally {
       setLoading(false);
     }
