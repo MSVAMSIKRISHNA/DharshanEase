@@ -4,6 +4,7 @@ import { MapPin, Clock, Star, Users, Calendar, ChevronRight, Heart, Share2, Tick
 import { templeAPI, wishlistAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
+import Loader from '../../components/common/Loader';
 import { formatTime, getImageUrl, getTempleFallbackImage } from '../../utils/helpers';
 
 const TempleDetailsPage = () => {
@@ -258,23 +259,24 @@ const TempleDetailsPage = () => {
   useEffect(() => {
     const fetchTemple = async () => {
       try {
-        /* Check if this is a fallback temple ID */
-        if (id.startsWith('temp_') && fallbackTemplesMap[id]) {
+        if (fallbackTemplesMap[id]) {
           setTemple(fallbackTemplesMap[id]);
           setLoading(false);
           return;
         }
         const res = await templeAPI.getById(id);
-        setTemple(res.data.data);
-      } catch {
-        /* If API fails, try fallback data */
-        if (fallbackTemplesMap[id]) {
-          setTemple(fallbackTemplesMap[id]);
-        } else {
-          showError('Failed to load temple details');
+        if (res.data?.data) {
+          setTemple(res.data.data);
+          setLoading(false);
+          return;
         }
+      } catch {
+        /* If API fails on deployed or offline site, fall through to fallback data */
       }
-      finally { setLoading(false); }
+      const fallbackList = Object.values(fallbackTemplesMap);
+      const match = fallbackTemplesMap[id] || fallbackList.find((t) => t._id === id) || fallbackList[0];
+      setTemple(match);
+      setLoading(false);
     };
     fetchTemple();
   }, [id]);

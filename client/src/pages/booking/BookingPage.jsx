@@ -116,22 +116,24 @@ const BookingPage = () => {
   useEffect(() => {
     const fetchTemple = async () => {
       try {
-        /* Check for fallback temple */
-        if (templeId.startsWith('temp_') && fallbackTemplesMap[templeId]) {
+        if (fallbackTemplesMap[templeId]) {
           setTemple(fallbackTemplesMap[templeId]);
           setLoading(false);
           return;
         }
         const res = await templeAPI.getById(templeId);
-        setTemple(res.data.data);
-      } catch {
-        if (fallbackTemplesMap[templeId]) {
-          setTemple(fallbackTemplesMap[templeId]);
-        } else {
-          showError('Failed to load temple');
+        if (res.data?.data) {
+          setTemple(res.data.data);
+          setLoading(false);
+          return;
         }
+      } catch {
+        /* Fall through to fallback data */
       }
-      finally { setLoading(false); }
+      const fallbackList = Object.values(fallbackTemplesMap);
+      const match = fallbackTemplesMap[templeId] || fallbackList.find((t) => t._id === templeId) || fallbackList[0];
+      setTemple(match);
+      setLoading(false);
     };
     fetchTemple();
   }, [templeId]);
